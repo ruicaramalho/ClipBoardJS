@@ -5,7 +5,6 @@
     <title>title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="clipboard.js"></script>
-
     <style>
       #clipresult {
           min-width: 100px;
@@ -15,8 +14,30 @@
           padding: 1em;
       }
    </style>
+   <script>
+     let clipb = new ClipBoard({ getBase64:true });
+     clipb.PastEvent(SeePast);
+     
+   function SeePast(clipVals) {
+      console.log(clipVals);
+      if (clipVals.FileType.includes('image')) {
+          let img = $('<img>');
+          //img.prop("src", clipVals.Base64Data);
+          img.prop("src", clipVals.BlobSrc);
+          $('#clipresult').html(img);
+      }
+      else if (clipVals.FileType.includes('text')){
+          console.log("é texto: " + clipVals.Text);
+          $('#clipresult').html(clipVals.Text);
+      }
+      else {
+          new_window = window.open(clipVals.BlobSrc);
+      }
+  }  
+   </script>
   </head>
   <body>
-    <p><p>
+    <p>Paste using <code>ctrl+v</code><p>
+    <div id="clipresult"></div>
   </body>
 </html>
