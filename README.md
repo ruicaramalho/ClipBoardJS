@@ -6,11 +6,12 @@ Easy access Clipboard using Javascript
 Declare a ClipBoard object with the options you wan't.
 
 
-Assign a ==PasteEvent== `function` so that when you paste in the browser you receive an object with the files on clipboard.
+Assign a **PasteEvent** `function` so that when you paste in the browser you receive an object with the files on clipboard.
 
 ## Example
 
 ~~~~js
+// This example uses JQuery
 
 let clipb = new ClipBoard();
 clipb.PastEvent(SeePast);
@@ -29,11 +30,6 @@ function SeePast(clipVals) {
     }
     else {
         new_window = window.open(clipVals.BlobSrc);
-        /*
-        new_window.onload = () => {
-            newWindow.location = clipVals.BlobSrc;
-        };
-        */
     }
     
 }
