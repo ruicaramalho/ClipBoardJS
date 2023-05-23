@@ -5,23 +5,23 @@
 */
 function ClipBoard(options) {
     if (options == undefined) options = {};
-
+    this.Values = null;
+    
     // default option values
     let _defopt = {
-        eventObj: window,
-        single: true,
-        getBase64: false
+        eventObj: window, //By default is window but it can be an element like <div>
+        single: true, // get only the first file
+        getBase64: false // also return file in base64 data
     };
-    this.Values = null;
-
     _opt = $.extend({}, options, _defopt);
-
     this.Options = _opt;
 
+    // control async calls
     let promises = [];
 
+    // default PasteEvent CallBack
     _callBack = () => {
-        console.log("ClipBoard: Define callBack function")
+        console.log("ClipBoard: Define callBack function for 'PastEvent'");
     }
 
     this.PastEvent = callBack => {
@@ -35,15 +35,9 @@ function ClipBoard(options) {
         _opt.eventObj.addEventListener("paste", e => callRefresh(e));
     }
 
-    this.ToBase64 = () => {
-
-    }
-
-
     callRefresh = (event) => {
         Getitems(event);
         Promise.all(promises).then(callReturn);
-
     }
 
     callReturn = () => {
