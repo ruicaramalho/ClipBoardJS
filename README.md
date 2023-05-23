@@ -80,10 +80,11 @@ Depending on option value `single` either returns an object or array of objects
 ~~~~js
 {
     "Type": "image/png",
-    "Name": "BlueTiger208x208.png",
+    "Name": "PortoBlueTiger208x208.png",
     "Size": 132228,
     "Date": "2023-02-21T17:25:04.972Z",
-    "BlobSrc": "blob:https://my.site.pt/bb67559a-6fd1-4b16-bd55-c5f6bb353179"
+    "BlobSrc": "blob:null/49cc7e62-d628-4c31-b246-a2268039a6bd",
+    "Base64Data": "data:image/png;base64,iVBORw0KGgoAAAAN......"
 }
 ~~~~
 
