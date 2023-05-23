@@ -16,7 +16,7 @@ Easy access Clipboard using Javascript. When using paste `ctrl+v` get clipboard 
 
 # How to use
 
-Declare a ClipBoard object with the options you wan't.
+Declare a `ClipBoard(<options>)` object with the options you wan't.
 
 Assign a **PasteEvent** `function` so that when you paste in the browser you receive an object with the files on clipboard.
 
@@ -28,6 +28,7 @@ Assign a **PasteEvent** `function` so that when you paste in the browser you rec
 let clipb = new ClipBoard();
 clipb.PastEvent(SeePast);
 
+// This function can be anything, this is an example
 function SeePast(clipVals) {
     console.log(clipVals);
 
@@ -45,4 +46,10 @@ function SeePast(clipVals) {
     }
     
 }
+~~~~
+
+## Options
+
+~~~~json
+{ eventObj: window, single: true,  getBase64: false };
 ~~~~
