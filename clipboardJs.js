@@ -72,7 +72,7 @@ function ClipBoard(options) {
             let _retObj = {};
             let item = items[i];
 
-            _retObj.FileType = item.type;
+            _retObj.Type = item.type;
             
             // is File
             if (item.kind == 'file') {
