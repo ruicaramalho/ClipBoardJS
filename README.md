@@ -55,7 +55,7 @@ Default values:
 { eventObj: window, single: true,  getBase64: false }
 ~~~~
 
-* eventObj - by default if you paste anywhere in the browser it will run, but you can send anotther obect for the paste event.
+* eventObj - by default is `window` but you can use another object for the paste event trigger.
 * single - if true only get's the first item in clipboard.
 * getBase64 - if true also return the file base24 string in `Base64Data` property.
 
