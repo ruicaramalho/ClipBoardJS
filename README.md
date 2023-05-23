@@ -2,14 +2,14 @@
 Easy access Clipboard using Javascript. When using paste `ctrl+v` get clipboard info:
 
 - Base24 data string (if option `getBase64` is true) (*1)
-- Blob url (*1)
+- Blob URL (use for: downlad button, image src, etc) (*1)
 - Type (usualy is the mime type) (*1)
 - Name (*1)
 - File size (in bytes) (*1)
 - Modified Date (*1)
 - Text (*2)
 
-(*1) - Only for files
+(*1) - Only if not a string
 (*2) - Only for strings
 
 ---
