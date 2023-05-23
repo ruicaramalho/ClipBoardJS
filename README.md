@@ -48,8 +48,24 @@ function SeePast(clipVals) {
 }
 ~~~~
 
-## Options
+## Entry Options
 
-~~~~json
-{ eventObj: window, single: true,  getBase64: false };
+Default values:
+~~~~js
+{ eventObj: window, single: true,  getBase64: false }
+~~~~
+
+* eventObj - by default if you paste anywhere in the browser it will run, but you can send anotther obect for the paste event.
+* single - if true only get's the first item in clipboard.
+* getBase64 - if true also return the file base24 string in `Base64Data` property.
+
+## Return
+
+Depending on option value `single` either returns an object or array of objects
+
+**return object example**
+~~~~js
+{
+    
+}
 ~~~~
