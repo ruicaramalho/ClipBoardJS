@@ -30,7 +30,6 @@ function ClipBoard(options) {
             return;
         }
         _callBack = callBack;
-
         promises = [];
         _opt.eventObj.addEventListener("paste", e => callRefresh(e));
     }
@@ -41,14 +40,12 @@ function ClipBoard(options) {
     }
 
     callReturn = () => {
-        console.log(`ClipBoard: paste finished calling '${_callBack.name}'`);
+        console.log(`ClipBoard: paste finished. Calling '${_callBack.name}'...`);
         _callBack(this.Values);
     }
 
     Getitems = (event) => {
-
         console.log("ClipBoard: getting clipboard items");
-
         let items = event.clipboardData.items;
 
         if (!items.length) {
@@ -88,9 +85,7 @@ function ClipBoard(options) {
 
                 promises.push(
                     new Promise(resolve => {
-
-                        // link to blob
-                        // https://javascript.info/blob
+                        // link to blob | https://javascript.info/blob
                         resolve(_retObj.BlobSrc = URLObj.createObjectURL(blob));
                     })
                 );
