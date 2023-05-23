@@ -92,6 +92,6 @@ Depending on option value `single` either returns an object or array of objects
 ~~~~js
 {
     "Type": "text/plain",
-    "Text": "não existe ou não é publico"
+    "Text": "Porto best town to live"
 }
 ~~~~
