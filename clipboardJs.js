@@ -1,13 +1,12 @@
 /**
-* Paste or Copy to clipboard
+* ClipboardJs | Uses JQuery
 * 
 * @param {options} options
 */
 function ClipBoard(options) {
-    //const clp_ele_img = document.querySelector(elemID);
-    if (options == undefined)
-        options = {};
+    if (options == undefined) options = {};
 
+    // default option values
     let _defopt = {
         eventObj: window,
         single: true,
@@ -18,8 +17,6 @@ function ClipBoard(options) {
     _opt = $.extend({}, options, _defopt);
 
     this.Options = _opt;
-
-    //_opt.eventObj.addEventListener("paste", e => GetPastedFiles(e))
 
     let promises = [];
 
@@ -58,19 +55,14 @@ function ClipBoard(options) {
 
         console.log("ClipBoard: getting clipboard items");
 
-
-
-
         let items = event.clipboardData.items;
-
-
 
         if (!items.length) {
             console.warn("ClipBoard: No files on ClipBoard")
             return;
         }
 
-        //clear previous Blobs in memory
+        //clear previous Blobs in browser memory
         if (this.Values !== null) {
             if (_opt.single = false) {
                 this.Values.forEach(o => {
@@ -85,22 +77,18 @@ function ClipBoard(options) {
             }
         }
 
-
         for (var i = 0; i < items.length; i++) {
-
             let _retObj = {};
             let item = items[i];
 
-
-
             _retObj.FileType = item.type;
+            
+            // is File
             if (item.kind == 'file') {
                 let blob = item.getAsFile();
                 _retObj.Name = blob.name;
                 _retObj.Size = blob.size;
                 _retObj.Date = new Date(blob.lastModified);
-
-                //console.log(blob);
 
                 let URLObj = window.URL || window.webkitURL;
 
@@ -127,6 +115,7 @@ function ClipBoard(options) {
                 }
 
             }
+            // is string
             else {
                 promises.push(
                     new Promise(resolve => {
@@ -142,7 +131,6 @@ function ClipBoard(options) {
                 this.Values = _retObj;
                 break;
             }
-
-        };
+        }
     }
 }
