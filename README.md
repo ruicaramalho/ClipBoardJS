@@ -63,9 +63,14 @@ Default values:
 
 Depending on option value `single` either returns an object or array of objects
 
-**return object example**
+**return object examples**
+
 ~~~~js
 {
-    
+    "FileType": "image/png",
+    "Name": "BlueTiger208x208.png",
+    "Size": 132228,
+    "Date": "2023-02-21T17:25:04.972Z",
+    "BlobSrc": "blob:https://my.site.pt/bb67559a-6fd1-4b16-bd55-c5f6bb353179"
 }
 ~~~~
