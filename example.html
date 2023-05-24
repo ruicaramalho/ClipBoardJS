@@ -1,89 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>ClipBoardJS</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="clipboardjs.js"></script>
     <style>
-	#clipresult {
-		width: 100%;
-		min-height: 500px;
-		border: 1px dotted gray;
-	}
-	[controls] {
-		max-width:100%
-	}
-	body {
-		font-family:Arial;
-		font-size: 16px;
-		color:#232323;
-		padding: 2em;
-	}
-	pre {
-		white-space: pre-wrap;
-		word-wrap: break-word;
-		padding:1em;
-	}
-   </style>
-   <script>
-     let clipb = new ClipBoard({ loadingFunction: AwaitLoading });
-     clipb.PastEvent(SeePast);
-     
-   function SeePast(clipVals) {
-      console.log(clipVals);
-	  $('#clbvals').text(JSON.stringify(clipVals));
-      if (clipVals.Type.includes('image')) {
-          let img = $('<img>');
+      #clipresult {
+        width: 100%;
+        min-height: 500px;
+        border: 1px dotted gray;
+      }
+      [controls] {
+        max-width: 100%;
+      }
+      body {
+        font-family: Arial;
+        font-size: 16px;
+        color: #232323;
+        padding: 2em;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        padding: 1em;
+      }
+    </style>
+    <script>
+      let clipb = new ClipBoard({ loadingFunction: AwaitLoading });
+      clipb.PastEvent(SeePast);
+
+      function SeePast(clipVals) {
+        console.log(clipVals);
+
+        $("#clbvals").text(JSON.stringify(clipVals));
+        if (clipVals.Type.includes("image")) {
+          let img = $("<img>");
           //img.prop("src", clipVals.Base64Data);
           img.prop("src", clipVals.BlobSrc);
-          $('#clipresult').html(img);
-      }
-      else if (clipVals.Type.includes('text')){
-          $('#clipresult').html(clipVals.Text);
-      }
-	  else if (clipVals.Type.includes('audio')){
-		  let obj = $('<audio>');
-		  obj.attr('controls','');
-		  let src = $('<source>');
-		  src.prop('src', clipVals.BlobSrc);
-		  src.attr('type',clipVals.Type);
-		  obj.append(src);
-		  $('#clipresult').html(obj);
-      }
-	  else if (clipVals.Type.includes('video')){
-		  let obj = $('<video>');
-		  obj.attr('controls','');
-		  let src = $('<source>');
-		  src.prop('src', clipVals.BlobSrc);
-		  src.attr('type',clipVals.Type);
-		  obj.append(src);
-		  $('#clipresult').html(obj);
-      }
-      else {
+          $("#clipresult").html(img);
+        } else if (clipVals.Type.includes("text")) {
+          $("#clipresult").html(clipVals.Text);
+        } else if (clipVals.Type.includes("audio")) {
+          let obj = $("<audio>");
+          obj.attr("controls", "");
+          let src = $("<source>");
+          src.prop("src", clipVals.BlobSrc);
+          src.attr("type", clipVals.Type);
+          obj.append(src);
+          $("#clipresult").html(obj);
+        } else if (clipVals.Type.includes("video")) {
+          let obj = $("<video>");
+          obj.attr("controls", "");
+          let src = $("<source>");
+          src.prop("src", clipVals.BlobSrc);
+          src.attr("type", clipVals.Type);
+          obj.append(src);
+          $("#clipresult").html(obj);
+        } else {
           new_window = window.open(clipVals.BlobSrc);
+        }
+        $("#wait").hide();
+        $("#clipresult").show();
       }
-	  $('#wait').hide();
-	  $('#clipresult').show();
-   }  
-   
-   function AwaitLoading() {
-	$('#wait').show();
-	$('#clipresult').hide();
-	alert("loading");
-   }
-   </script>
+
+      function AwaitLoading() {
+        $("#wait").show();
+        $("#clipresult").hide();
+        alert("loading");
+      }
+    </script>
   </head>
   <body>
-    <p>Paste using <code>ctrl+v</code><p>
-	<div><pre><code id="clbvals"></code></pre></div>
-	<hr>
-	<div id="wait" style="display:none">
-		<h1>Loading...</h1>
-		<h4>please wait..</h4>
-	</div>
+    <p>Paste using <code>ctrl+v</code></p>
+    <p></p>
+    <div>
+      <pre><code id="clbvals"></code></pre>
+    </div>
+    <hr />
+    <div id="wait" style="display: none;">
+      <h1>Loading...</h1>
+      <h4>please wait..</h4>
+    </div>
     <div id="clipresult"></div>
-	
-	
   </body>
 </html>
