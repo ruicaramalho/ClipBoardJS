@@ -6,15 +6,20 @@
 function ClipBoard(options) {
     if (options == undefined) options = {};
     this.Values = null;
+	
+	_loading = () => {
+        console.log("ClipBoard: loading please wait");
+    }
     
     // default option values
     let _defopt = {
         eventObj: window, //By default is window but it can be an element like <div>
         single: true, // get only the first file
-        getBase64: false // also return file in base64 data
+        getBase64: false, // also return file in base64 data
+		loadingFunction: _loading
     };
-    _opt = $.extend({}, options, _defopt);
-    this.Options = _opt;
+    
+    this.Options = $.extend({}, _defopt, options);
 
     // control async calls
     let promises = [];
@@ -31,7 +36,7 @@ function ClipBoard(options) {
         }
         _callBack = callBack;
         promises = [];
-        _opt.eventObj.addEventListener("paste", e => callRefresh(e));
+        this.Options.eventObj.addEventListener("paste", e => callRefresh(e));
     }
 
     callRefresh = (event) => {
@@ -45,6 +50,9 @@ function ClipBoard(options) {
     }
 
     Getitems = (event) => {
+		
+		this.Options.loadingFunction
+		
         console.log("ClipBoard: getting clipboard items");
         let items = event.clipboardData.items;
 
@@ -55,7 +63,7 @@ function ClipBoard(options) {
 
         //clear previous Blobs in browser memory
         if (this.Values !== null) {
-            if (_opt.single = false) {
+            if (this.Options.single = false) {
                 this.Values.forEach(o => {
                     if (typeof o.BlobSrc == 'string')
                         URL.revokeObjectURL(o.BlobSrc)
@@ -90,7 +98,8 @@ function ClipBoard(options) {
                     })
                 );
 
-                if (_opt.getBase64) {
+                if (this.Options.getBase64==true) {
+					console.log("ClipBoard: getting base64 string...");
                     promises.push(
                         new Promise(resolve => {
                             let reader = new FileReader();
@@ -114,7 +123,7 @@ function ClipBoard(options) {
                     })
                 );
             }
-            if (_opt.single = false)
+            if (this.Options.single = false)
                 this.Values.push(_retObj);
             else {
                 this.Values = _retObj;
