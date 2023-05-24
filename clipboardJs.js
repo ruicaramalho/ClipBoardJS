@@ -6,19 +6,19 @@
 function ClipBoard(options) {
     if (options == undefined) options = {};
     this.Values = null;
-	
-	_loading = () => {
+
+    _loading = () => {
         console.log("ClipBoard: loading please wait");
     }
-    
+
     // default option values
     let _defopt = {
         eventObj: window, //By default is window but it can be an element like <div>
         single: true, // get only the first file
         getBase64: false, // also return file in base64 data
-		loadingFunction: _loading
+        loadingFunction: _loading
     };
-    
+
     this.Options = $.extend({}, _defopt, options);
 
     // control async calls
@@ -40,6 +40,7 @@ function ClipBoard(options) {
     }
 
     callRefresh = (event) => {
+        this.Options.loadingFunction();
         Getitems(event);
         Promise.all(promises).then(callReturn);
     }
@@ -50,9 +51,7 @@ function ClipBoard(options) {
     }
 
     Getitems = (event) => {
-		
-		this.Options.loadingFunction
-		
+
         console.log("ClipBoard: getting clipboard items");
         let items = event.clipboardData.items;
 
@@ -81,7 +80,7 @@ function ClipBoard(options) {
             let item = items[i];
 
             _retObj.Type = item.type;
-            
+
             // is File
             if (item.kind == 'file') {
                 let blob = item.getAsFile();
@@ -98,8 +97,8 @@ function ClipBoard(options) {
                     })
                 );
 
-                if (this.Options.getBase64==true) {
-					console.log("ClipBoard: getting base64 string...");
+                if (this.Options.getBase64 == true) {
+                    console.log("ClipBoard: getting base64 string...");
                     promises.push(
                         new Promise(resolve => {
                             let reader = new FileReader();
