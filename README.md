@@ -58,6 +58,7 @@ Default values:
 * eventObj - by default is `window` but you can use another object for the paste event trigger.
 * single - if true only get's the first item in clipboard.
 * getBase64 - if true also return the file base24 string in `Base64Data` property.
+* loadingFunction - a function while loading from clipboard. Usualy not necessary;
 
 ## Return
 
