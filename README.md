@@ -9,8 +9,8 @@ Easy access Clipboard using Javascript. When using paste `ctrl+v` get clipboard 
 - Modified Date (*1)
 - Text (*2)
 
-(*1) - Only if not a string
-(*2) - Only for strings
+(*1) - Only if not a string  
+(*2) - Only for strings  
 
 ---
 
@@ -38,7 +38,6 @@ function SeePast(clipVals) {
         $('#clipresult').html(img);
     }
     else if (clipVals.Type.includes('text')){
-        console.log("é texto: " + clipVals.Text);
         $('#clipresult').html(clipVals.Text);
     }
     else {
