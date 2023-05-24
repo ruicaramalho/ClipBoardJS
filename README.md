@@ -12,6 +12,7 @@ Easy access Clipboard using Javascript. When using paste `ctrl+v` get clipboard 
 (*1) - Only if not a string  
 (*2) - Only for strings  
 
+> Needs JQuery
 ---
 
 # How to use
