@@ -1,5 +1,5 @@
 # ClipBoardJS
-Easy access Clipboard using Javascript. When using paste `ctrl+v` get clipboard info:
+Easy access Clipboard using Javascript. When using paste `ctrl+v` get an object (JSon format) with the properties:
 
 - Base24 data string (if option `getBase64` is true) (*1)
 - Blob URL (use for: download button, image src, etc) (*1) [ more about BLOB ](https://javascript.info/blob)
@@ -22,6 +22,8 @@ Declare a `ClipBoard(<options>)` object with the options you wan't.
 Assign a **PasteEvent** `function` so that when you paste in the browser you receive an object with the files on clipboard.
 
 ## Example
+
+**Check the Example HTML file and try pasting: text, images, video, mp3, pdf.**
 
 ~~~~js
 // This example uses JQuery
